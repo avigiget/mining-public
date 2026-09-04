@@ -8,21 +8,28 @@
 #
 # 配合服务器端脚本 fanqiang-server.sh 使用（服务器开好 26779 HTTP 代理）
 #
-# ============ 一键运行 ============
-#   curl -sL https://raw.githubusercontent.com/avigiget/mining-public/main/fanqiang-client.sh | sudo bash -s <服务器IP>:26779
+# ============ 一键运行（复制下面对应场地的整行命令，粘贴到矿机执行） ============
 #
-#   各场地：
-#     丰州：  ... | sudo bash -s 192.168.9.1:26779
-#     金山：  ... | sudo bash -s 192.168.9.1:26779
-#     潘山：  ... | sudo bash -s 192.168.7.2:26779
-#     郑国权：... | sudo bash -s 192.168.0.34:26779
+#   丰州：
+#   curl -sL https://raw.githubusercontent.com/avigiget/mining-public/main/fanqiang-client.sh | sudo bash -s 192.168.9.1:26779
+#
+#   金山：
+#   curl -sL https://raw.githubusercontent.com/avigiget/mining-public/main/fanqiang-client.sh | sudo bash -s 192.168.9.1:26779
+#
+#   潘山：
+#   curl -sL https://raw.githubusercontent.com/avigiget/mining-public/main/fanqiang-client.sh | sudo bash -s 192.168.7.2:26779
+#
+#   郑国权（4070s-cc）：
+#   curl -sL https://raw.githubusercontent.com/avigiget/mining-public/main/fanqiang-client.sh | sudo bash -s 192.168.0.34:26779
 #
 # ============ 使用说明 ============
-# 1. 服务器端先跑 fanqiang-server.sh 开好代理
-# 2. 矿机跑本脚本，指向服务器的 HTTP 代理端口
+# 1. 服务器端（软路由）PassWall 已开好 26779 HTTP 代理（4 场地都已配好，不用动）
+# 2. 矿机跑上面对应场地的整行命令
 # 3. 验证：curl -sI https://www.google.com 返回 HTTP/2 200 即成功
 #
-# 取消翻墙：sudo bash -s off（或本机 bash fanqiang-client.sh off）
+# 取消翻墙：
+#   curl -sL https://raw.githubusercontent.com/avigiget/mining-public/main/fanqiang-client.sh | sudo bash -s off
+#
 # 注意：重启矿机后翻墙失效（gost/iptables 内存态），需重跑或加开机自启
 # ============================================================
 set -u
