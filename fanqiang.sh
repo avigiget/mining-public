@@ -21,10 +21,8 @@ ROUTER="${1:-}"
 GOST_PORT=12345
 GOST_BIN="/usr/local/bin/gost"
 GOST_VER="3.0.0-rc10"
-GOST_URLS=(
-  "https://gh-proxy.com/https://github.com/go-gost/gost/releases/download/v${GOST_VER}/gost_${GOST_VER}_linux_amd64.tar.gz"
-  "https://github.com/go-gost/gost/releases/download/v${GOST_VER}/gost_${GOST_VER}_linux_amd64.tar.gz"
-)
+GOST_URL1="https://gh-proxy.com/https://github.com/go-gost/gost/releases/download/v${GOST_VER}/gost_${GOST_VER}_linux_amd64.tar.gz"
+GOST_URL2="https://github.com/go-gost/gost/releases/download/v${GOST_VER}/gost_${GOST_VER}_linux_amd64.tar.gz"
 
 # ---------- 取消翻墙 ----------
 if [ "$ROUTER" = "off" ] || [ "$ROUTER" = "stop" ]; then
@@ -54,7 +52,7 @@ echo "== 翻墙目标代理: $ROUTER =="
 if [ ! -x "$GOST_BIN" ]; then
     echo "下载 gost ..."
     ok=0
-    for url in "${GOST_URLS[@]}"; do
+    for url in "$GOST_URL1" "$GOST_URL2"; do
         echo "  尝试: $url"
         if curl -sL --max-time 120 -o /tmp/gost.tar.gz "$url" 2>/dev/null; then
             if tar xzf /tmp/gost.tar.gz -C /tmp/ gost 2>/dev/null && [ -x /tmp/gost ]; then
